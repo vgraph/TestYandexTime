@@ -13,8 +13,9 @@ def driver(request):
 
 
 class TestYandexTime:
+    number_of_clocks = 5
     
-    def test_01(self, driver):
+    def test_number_of_clocks(self, driver):
         driver.get("https://yandex.ru/time/")
-        first_city = driver.find_element_by_css_selector(".city__label")
-        print("Text:", first_city.get_property("textContent"))
+        cities = driver.find_elements_by_css_selector(".city__label")
+        assert len(cities) == self.number_of_clocks
